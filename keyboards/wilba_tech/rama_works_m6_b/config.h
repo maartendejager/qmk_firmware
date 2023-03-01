@@ -57,10 +57,10 @@
 #define RGB_BACKLIGHT_DISABLE_AFTER_TIMEOUT 0
 
 // the default brightness
-#define RGB_BACKLIGHT_BRIGHTNESS 255
+#define RGB_BACKLIGHT_BRIGHTNESS 0
 
 // the default effect (RGB test)
-#define RGB_BACKLIGHT_EFFECT 255
+#define RGB_BACKLIGHT_EFFECT 0
 
 // the default effect speed (0-3)
 #define RGB_BACKLIGHT_EFFECT_SPEED 0
