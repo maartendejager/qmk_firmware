@@ -1,8 +1,5 @@
 #include QMK_KEYBOARD_H
-
-#ifdef AUDIO_ENABLE
-#    include "muse.h"
-#endif
+#include "muse.h"
 
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
@@ -62,69 +59,79 @@ const uint16_t PROGMEM fn_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_I3] = LAYOUT_planck_grid(
-  LT(_USHIFTI3, KC_ESC), KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,    KC_BSPC,
+       KC_GRV,   KC_1,            KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,      KC_0,     KC_DEL,
+  LT(_USHIFTI3, KC_ESC), KC_Q,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,    KC_BSPC,
   LT(_CAPSFN, KC_TAB), KC_A,      KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,    KC_SCLN,    LT(_I3_FN, KC_QUOT),
   MT(MOD_LSFT, KC_MINS), KC_Z,    KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,    KC_COMM,     KC_DOT, CTL_T(KC_SLSH), MT(MOD_RSFT, KC_ENT),
      MO(_NPFN),    KC_LCTL,    KC_LALT,    KC_LGUI, MO(_WIN_LWR),   KC_SPC,    KC_SPC, MO(_WIN_RSE),   _______,   _______,    _______, MO(_USHIFTI3)
 ),
 
 [_WIN] = LAYOUT_planck_grid(
+       KC_GRV,   KC_1,            KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,      KC_0,     KC_DEL,
   LT(_USHIFT, KC_ESC), KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,    KC_BSPC,
   LT(_CAPSFN, KC_TAB), KC_A,      KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,    KC_SCLN,    KC_QUOT,
   MT(MOD_LSFT, KC_MINS), KC_Z,    KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,    KC_COMM,     KC_DOT, CTL_T(KC_SLSH), MT(MOD_RSFT, KC_ENT),
      MO(_NPFN),    KC_LCTL,    KC_LALT,    KC_LGUI, MO(_WIN_LWR),   KC_SPC,    KC_SPC, MO(_WIN_RSE),   _______,   _______,    _______, MO(_USHIFT)
 ),
 
-[_WIN_LWR] = LAYOUT_planck_grid(
+[_WIN_LWR] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
         ALTESC, LALT(KC_F1), LALT(KC_1), LCA(KC_D),  LCA(KC_F),    _______, A(KC_LEFT), RCS(KC_TAB), RCS(KC_UP), C(KC_TAB),    SFTSFT,    _______,
        ALT_TAB,  LCA(KC_0),   S(KC_F8),      KC_F7,      KC_F8,      KC_F9,    _______, LSFT(KC_TAB), RCS(KC_DOWN), KC_TAB, A(KC_HOME),    _______,
        KC_PIPE,   C(KC_F1),  LCA(KC_8),   C(KC_F2),  LCA(KC_9),   C(KC_F4),   C(KC_F5),  G(KC_PGUP),    ALTESC, G(KC_PGDN),    _______, LCA(KC_ENT),
   LCA(KC_COMM),    _______,  LCA(KC_8),   A(KC_F8),    _______,     OUTSPC,    _______,   LCA(KC_N), LCA(KC_M), C(KC_PLUS), C(KC_MINS), LCA(KC_DOT)
 ),
  
-[_WIN_RSE] = LAYOUT_planck_grid(
-        KC_GRV,     KC_EQL,    KC_PLUS,    KC_MINS,  A(KC_INS),    _______,    _______, S(KC_HOME),   S(KC_UP),  S(KC_END), S(KC_PGUP),     KC_DEL,   
+[_WIN_RSE] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+        KC_GRV,     KC_EQL,    KC_PLUS,    KC_MINS,    _______,    _______,    _______, S(KC_HOME),   S(KC_UP),  S(KC_END), S(KC_PGUP),     KC_DEL,   
        KC_CAPS,    KC_LPRN,    KC_RPRN,    KC_LBRC,    KC_RBRC,    _______,    _______, S(KC_LEFT), S(KC_DOWN), S(KC_RIGHT), S(KC_PGDN),   _______,   
         DSHARR,    KC_LCBR,    KC_RCBR,    _______,  S(KC_INS),    _______,    _______,    _______,    _______,      KC_UP,    KC_BSLS, RCS(KC_ENT),   
         EQUARR,    _______,    _______,    _______,    _______,     SPCSPC,     SPCSPC,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT,      _______
 ),
 
-[_CAPSFN] = LAYOUT_planck_grid(
+[_CAPSFN] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
   LSFT(KC_ESC),      KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,    _______,    KC_HOME,      KC_UP,     KC_END,    KC_PGUP,     KC_F12,   
        _______,      KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_PGDN,     KC_F11,   
        _______,     KC_F11,     KC_F12,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSLS,   C(KC_F1),   
-       _______,    _______,    _______,    _______,    _______,    KC_MPLY,    KC_MPLY,    KC_MPRV,    KC_MNXT,    KC_VOLD,    KC_VOLU,   KC_MUTE
+       _______,    _______,    _______,    _______,    _______,    KC_MPLY,    KC_MPLY,    KC_MPRV,    KC_MNXT,    KC_VOLD,    KC_VOLU,   KC__MUTE
 ),
 
-[_NPFN] = LAYOUT_planck_grid(
-       _______,    _______,    _______,    _______,    _______,    _______,    KC_LNUM,       KC_7,       KC_8,       KC_9,    KC_BSLS,    KC_PSCR,   
-       _______,    _______,    _______,    _______,    _______,    _______,    _______,       KC_4,       KC_5,       KC_6,    KC_ASTR,  A(KC_INS),   
+[_NPFN] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+       _______,    _______,    _______,    _______,    _______,    _______,    KC_NLCK,       KC_7,       KC_8,       KC_9,    KC_BSLS,    KC_PSCR,   
+       _______,    _______,    _______,    _______,    _______,    _______,    _______,       KC_4,       KC_5,       KC_6,    KC_ASTR,     KC_INS,   
        _______,    _______,    _______,    _______,    _______,    _______,    C(KC_M),       KC_1,       KC_2,       KC_3,    KC_MINS,    KC_PENT,   
-       _______,    _______,    _______,    _______,    _______,    _______,    _______,       KC_0,     KC_EQL,     KC_DOT,    KC_PLUS,    _______
+       _______,    _______,    _______,    _______,    _______,    C(KC_N),    C(KC_N),       KC_0,     KC_EQL,     KC_DOT,    KC_PLUS,    _______
 ),
 
-[_STRCFT] = LAYOUT_planck_grid(
+[_STRCFT] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
          KC_F1,       KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,     KC_DEL,
           KC_9,       KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,    KC_SCLN,    KC_QUOT,
-          KC_8,       KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,    KC_COMM,     KC_DOT,    _______,    MT(MOD_RSFT, KC_ENT),
+          KC_8,       KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,    KC_COMM,     KC_DOT,      F(20),    MT(MOD_RSFT, KC_ENT),
           KC_7,     KC_DOT,    KC_COMM,    KC_SLSH,    KC_LCTL,    KC_RSFT,    KC_RSFT,    KC_LALT,    KC_LEFT,      KC_UP,    KC_DOWN,    LT(_USHIFT, KC_RIGHT)
 ),
 
-[_USHIFT] = LAYOUT_planck_grid(
+[_USHIFT] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
        _______,    KC_EXLM,      KC_AT,    KC_HASH,     KC_DLR,    KC_PERC,    _______,     _______, LSG(KC_PGUP), _______,    _______,    G(KC_L),
-     QK_REBOOT,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______, LSG(KC_LEFT), LSG(KC_PGDN), LSG(KC_RIGHT), _______, LCA(KC_DEL),
+         RESET,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______, LSG(KC_LEFT), LSG(KC_PGDN), LSG(KC_RIGHT), _______, LCA(KC_DEL),
        _______,    _______,    _______,    _______,    _______,    _______,    _______,  G(KC_LEFT), A(KC_F10), G(KC_RIGHT),   _______,    _______,
            I3,        WIN,     STRCFT,    _______,    _______, A(KC_HOME),    _______,     _______,   _______,    _______,    _______,    _______
    ),
 
-[_USHIFTI3] = LAYOUT_planck_grid(
+[_USHIFTI3] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
        _______,    KC_EXLM,      KC_AT,    KC_HASH,     KC_DLR,    KC_PERC,    _______, LSG(KC_LBRC), G(KC_UP), LSG(KC_RBRC),    _______,    LSG(KC_X),
-     QK_REBOOT,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______, G(KC_LEFT), G(KC_DOWN), G(KC_RIGHT), _______, LSG(KC_O),
+         RESET,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______, G(KC_LEFT), G(KC_DOWN), G(KC_RIGHT), _______, LSG(KC_O),
        _______,    _______,    _______,    _______,    _______,    _______,    _______,  LSG(KC_LEFT), LSG(KC_UP), LSG(KC_RIGHT),   _______,    _______,
            I3,        WIN,     STRCFT,    _______,    _______, A(KC_HOME),    _______,     _______,  LSG(KC_DOWN),    _______,    _______,    _______
    ),
 
-[_I3_FN] = LAYOUT_planck_grid(
+[_I3_FN] = LAYOUT_planck_grid(    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
        _______,    G(KC_Q),    _______,  LSG(KC_K),      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
        _______,    _______,  LSG(KC_J),  LSG(KC_L), LSG(KC_SCLN),    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
        _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
@@ -229,13 +236,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case OUTSPC:
       if (record->event.pressed) {
-        SEND_STRING(SS_LCTL("b")" "SS_TAP(X_ESC)SS_TAP(X_ESC));
+        SEND_STRING(SS_LCTRL("b")" "SS_TAP(X_ESCAPE)SS_TAP(X_ESCAPE));
       }
       return false; 
       break;
     case SFTSFT:
       if (record->event.pressed) {
-        SEND_STRING(SS_TAP(X_LSFT)SS_TAP(X_LSFT));
+        SEND_STRING(SS_TAP(X_LSHIFT)SS_TAP(X_LSHIFT));
       }
       return false; 
       break;
@@ -243,13 +250,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         register_code16(KC_BTN1);
         unregister_code16(KC_BTN1);
-        SEND_STRING(SS_LCTL("1"));
+        SEND_STRING(SS_LCTRL("1"));
       }
       return false; 
       break;
     case SCRN2:
       if (record->event.pressed) {
-        SEND_STRING(SS_LCTL("2"));
+        SEND_STRING(SS_LCTRL("2"));
         register_code16(KC_BTN1);
         unregister_code16(KC_BTN1);
       }
