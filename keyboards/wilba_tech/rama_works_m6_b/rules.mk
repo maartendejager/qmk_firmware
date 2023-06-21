@@ -16,6 +16,7 @@ BACKLIGHT_ENABLE = no      # Enable keyboard backlight functionality
 AUDIO_ENABLE = no           # Audio output
 RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight.  Do not enable this with audio at the same time.
 
+<<<<<<< Updated upstream
 CIE1931_CURVE = yes
 
 # project specific files
@@ -24,3 +25,7 @@ SRC =	keyboards/wilba_tech/wt_main.c \
 		quantum/color.c \
 		drivers/led/issi/is31fl3218.c \
 		i2c_master.c
+=======
+# Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
+SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
+>>>>>>> Stashed changes
