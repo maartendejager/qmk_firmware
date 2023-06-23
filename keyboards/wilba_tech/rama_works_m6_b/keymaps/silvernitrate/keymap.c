@@ -34,4 +34,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(0), TO(1), TO(2),
         TO(3), TO(4), _______)
 };
+
+// qmk flash -kb wilba_tech/rama_works_m6_a -km default
     

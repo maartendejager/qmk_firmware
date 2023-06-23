@@ -23,7 +23,8 @@ enum planck_layers {
   _STRCFT,
   _USHIFT,
   _USHIFTI3,
-  _I3_FN
+  _I3_FN,
+  _I3_GUI
 };
 
 enum planck_keycodes {
@@ -40,6 +41,7 @@ enum planck_keycodes {
   USHIFT,
   USHIFTI3,
   I3_FN,
+  I3_GUI,
   SIDEBAR,
   EXT_PLV,
   SPCSPC,
@@ -100,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______,    _______,    _______,    _______,    _______,    _______,    KC_LNUM,       KC_7,       KC_8,       KC_9,    KC_BSLS,    KC_PSCR,   
        _______,    _______,    _______,    _______,    _______,    _______,    _______,       KC_4,       KC_5,       KC_6,    KC_ASTR,  A(KC_INS),   
        _______,    _______,    _______,    _______,    _______,    _______,    C(KC_M),       KC_1,       KC_2,       KC_3,    KC_MINS,    KC_PENT,   
-       _______,    _______,    _______,    _______,    _______,    _______,    _______,       KC_0,     KC_EQL,     KC_DOT,    KC_PLUS,    _______
+       _______,    _______,    _______,    _______,    _______,    G(KC_F1),    _______,       KC_0,     KC_EQL,     KC_DOT,    KC_PLUS,    _______
 ),
 
 [_STRCFT] = LAYOUT_planck_grid(
@@ -112,19 +114,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_USHIFT] = LAYOUT_planck_grid(
        _______,    KC_EXLM,      KC_AT,    KC_HASH,     KC_DLR,    KC_PERC,    _______,      _______, LSG(KC_PGUP),       _______, _______,     G(KC_L),
-     QK_REBOOT,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______, LSG(KC_LEFT), LSG(KC_PGDN), LSG(KC_RIGHT), _______, LCA(KC_DEL),
-     QK_REBOOT,    _______,    _______,    _______,    _______,    _______,    _______,   G(KC_LEFT),    A(KC_F10),   G(KC_RIGHT), _______,     _______,
-           I3,        WIN,      STRCFT,    _______,    _______, A(KC_HOME),    _______,      _______,      _______,       _______, _______,     _______
+       QK_BOOT,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______, LSG(KC_LEFT), LSG(KC_PGDN), LSG(KC_RIGHT), _______, LCA(KC_DEL),
+        QK_RBT,    _______,    _______,    _______,    _______,    _______,    _______,   G(KC_LEFT),    A(KC_F10),   G(KC_RIGHT), _______,     _______,
+            I3,        WIN,      STRCFT,    _______,    _______, A(KC_HOME),    _______,      _______,      _______,       _______, _______,     _______
    ),
 
 [_USHIFTI3] = LAYOUT_planck_grid(
        _______,    KC_EXLM,      KC_AT,    KC_HASH,     KC_DLR,    KC_PERC,    _______, LSG(KC_LBRC),     G(KC_UP),  LSG(KC_RBRC), _______, LSG(KC_X),
-     QK_REBOOT,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______,   G(KC_LEFT),   G(KC_DOWN),   G(KC_RIGHT), _______, LSG(KC_O),
-     QK_REBOOT,    _______,    _______,    _______,    _______,    _______,    _______, LSG(KC_LEFT),   LSG(KC_UP), LSG(KC_RIGHT), _______,   _______,
-           I3,        WIN,      STRCFT,    _______,    _______, A(KC_HOME),    _______,      _______, LSG(KC_DOWN),       _______, _______,   _______
+       QK_BOOT,    KC_CIRC,    KC_AMPR,    KC_ASTR,    _______,    _______,    _______,   G(KC_LEFT),   G(KC_DOWN),   G(KC_RIGHT), _______, LSG(KC_O),
+        QK_RBT,    _______,    _______,    _______,    _______,    _______,    _______, LSG(KC_LEFT),   LSG(KC_UP), LSG(KC_RIGHT), _______,   _______,
+            I3,        WIN,      STRCFT,    _______,    _______, A(KC_HOME),    _______,      _______, LSG(KC_DOWN),       _______, _______,   _______
    ),
 
 [_I3_FN] = LAYOUT_planck_grid(
+       _______,    G(KC_Q),    _______,  LSG(KC_K),      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+       _______,    _______,  LSG(KC_J),  LSG(KC_L), LSG(KC_SCLN),    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______
+   ),
+
+[_I3_GUI] = LAYOUT_planck_grid(
        _______,    G(KC_Q),    _______,  LSG(KC_K),      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
        _______,    _______,  LSG(KC_J),  LSG(KC_L), LSG(KC_SCLN),    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
        _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
@@ -200,6 +209,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case USHIFT:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_USHIFT);
+      }
+      return false;
+      break;
+    case USHIFTI3:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_USHIFTI3);
+      }
+      return false;
+      break;
+    case I3_FN:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_I3_FN);
+      }
+      return false;
+      break;
+    case I3_GUI:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_I3_GUI);
       }
       return false;
       break;
