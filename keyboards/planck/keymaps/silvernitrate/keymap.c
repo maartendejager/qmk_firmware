@@ -23,8 +23,9 @@ enum planck_layers {
   _STRCFT,
   _USHIFT,
   _USHIFTI3,
+  _I3_GUI,
   _I3_FN,
-  _I3_GUI
+  _I3_MV
 };
 
 enum planck_keycodes {
@@ -40,8 +41,9 @@ enum planck_keycodes {
   NPFN,
   USHIFT,
   USHIFTI3,
-  I3_FN,
   I3_GUI,
+  I3_FN,
+  I3_MV,
   SIDEBAR,
   EXT_PLV,
   SPCSPC,
@@ -67,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LT(_USHIFTI3, KC_ESC), KC_Q,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,      KC_O,           KC_P, KC_BSPC,
   LT(_CAPSFN, KC_TAB), KC_A,      KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,      KC_L,        KC_SCLN, LT(_I3_FN, KC_QUOT),
   MT(MOD_LSFT, KC_MINS), KC_Z,    KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,    KC_COMM,    KC_DOT, CTL_T(KC_SLSH), MT(MOD_RSFT, KC_ENT),
-     MO(_NPFN),    KC_LCTL,    KC_LALT,    KC_LGUI, MO(_WIN_LWR),   KC_SPC,    KC_SPC, MO(_WIN_RSE),   _______,   _______,        _______, MO(_USHIFTI3)
+     MO(_NPFN),    KC_LCTL,    KC_LALT,    KC_LGUI, MO(_WIN_LWR),   KC_SPC,    KC_SPC, MO(_WIN_RSE), MO(_I3_GUI),   _______,        _______, MO(_USHIFTI3)
 ),
 
 [_WIN] = LAYOUT_planck_grid(
@@ -126,18 +128,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             I3,        WIN,      STRCFT,    _______,    _______, A(KC_HOME),    _______,      _______, LSG(KC_DOWN),       _______, _______,   _______
    ),
 
+[_I3_GUI] = LAYOUT_planck_grid(
+       G(KC_Q),    _______, LSG(KC_SPC),   G(KC_UP),     G(KC_F),    G(KC_E),    _______, LSG(KC_SPC),   G(KC_UP),     G(KC_F),    G(KC_E),    _______,    
+       _______,    _______,  G(KC_LEFT), G(KC_DOWN), G(KC_RIGHT),    G(KC_W),    _______,  G(KC_LEFT), G(KC_DOWN), G(KC_RIGHT),    G(KC_W),    _______,    
+       _______,    _______,     _______,    _______,     _______,    G(KC_S),    _______,    _______,    _______,    _______,      G(KC_S), MO(_I3_FN),    
+       _______,    _______,     _______,    _______, C(G(KC_F1)),   G(KC_F1),    _______, LSG(KC_F1),    _______,    _______,    _______, MO(_I3_MV)
+   ),
+
 [_I3_FN] = LAYOUT_planck_grid(
-       _______,    G(KC_Q),    _______,  LSG(KC_K),      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
-       _______,    _______,  LSG(KC_J),  LSG(KC_L), LSG(KC_SCLN),    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+       _______,    _______,    _______,  C(G(KC_I)),     _______,    _______,    _______,    _______,  C(G(KC_I)),    _______,    _______,    _______,    
+       _______,    _______, C(G(KC_J)), C(G(KC_K)),   C(G(KC_L)),    _______,    _______, C(G(KC_J)), C(G(KC_K)),   C(G(KC_L)),    _______,    _______,    
        _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
        _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______
    ),
 
-[_I3_GUI] = LAYOUT_planck_grid(
-       _______,    G(KC_Q),    _______,  LSG(KC_K),      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
-       _______,    _______,  LSG(KC_J),  LSG(KC_L), LSG(KC_SCLN),    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
-       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
-       _______,    _______,    _______,    _______,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______
+[_I3_MV] = LAYOUT_planck_grid(
+       _______,    _______,      _______,   LSG(KC_UP),       _______,    _______,    _______,    _______,   LSG(KC_UP),    _______,    _______,    _______,    
+       _______,    _______, LSG(KC_LEFT), LSG(KC_DOWN), LSG(KC_RIGHT),    _______,    _______, LSG(KC_LEFT), LSG(KC_DOWN), LSG(KC_RIGHT),    _______,    _______,    
+       _______,    _______,      _______,      _______,       _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    
+       _______,    _______,      _______,      _______,       _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______
    )
 };
 
